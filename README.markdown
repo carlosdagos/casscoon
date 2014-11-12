@@ -1,5 +1,5 @@
-Casscoon: PHP Extension for Cassandra
-====================================
+Casscoon: PHP Extension for Cassandra [[alpha]]
+===============================================
 
 PHP Driver for Cassandra that wraps the [Datastax Official C++ Driver](https://github.com/datastax/cpp-driver), using the [PHP CPP development tools by Copernica](https://github.com/CopernicaMarketingSoftware/PHP-CPP). 
 
@@ -7,7 +7,7 @@ Being developed at [Basebone](http://basebone.com).
 
 ## Important
 
-- This still an incomplete implementation. As it stands it can do simple querying.
+- This still an incomplete implementation. As it stands it can do simple querying. **It is under development and testing**.
 - Tests are incomplete as of yet.
 - Needs more error checking. If you confuse your data types, you will get errors.
 - Connection pooling is still in the works!
@@ -15,7 +15,7 @@ Being developed at [Basebone](http://basebone.com).
 
 Sometimes you'll get an error about `"libcassandra.so": No such file or directory`
 
-This is because your LD_LIBRARY_PATH is empty, and the compiled output needs that library to work after it has been linked and compiled. Normally this can be solved by doing
+This is because your LD_LIBRARY_PATH is empty, and the driver needs that library to work after it has been linked and compiled. Normally this can be solved by doing
 
 	export LD_LIBRARY_PATH=/usr/local/lib/
 
@@ -224,13 +224,21 @@ Lastly, you must have [Monolog](https://github.com/Seldaek/monolog) *somewhere* 
 	make install
 	```
 
+### To compile on OS X 
+
+And to keep compatibility across my Ubuntu VMs, replace the LINKER_FLAG line in `include/php-cpp/Makefile`
+
+	ifeq ($(shell uname), Darwin)
+	LINKER_FLAGS        =   -shared -undefined dynamic_lookup
+	else
+	LINKER_FLAGS        =   -shared
+	endif
+
 ### Compatibility
 
 I have tested this on default PHP installations with Ubuntu 14.04.1 LTS (5.5.9-1ubuntu4.5), on a OSX 10.10 on a MacBook Pro Retina, Mid 2012 (PHP 5.4.23), and an iMac (27-inch, Mid 2010) (PHP 5.4.32).
 
-I modified some Makefiles so that you don't have to when compiling on either one of these systems.
-
-### Credits
+## Credits
 
 + [Datastax](https://github.com/datastax/): Very active and very helpful.
 + [PHP-CPP Project](https://github.com/CopernicaMarketingSoftware/PHP-CPP): It rules.
@@ -252,7 +260,7 @@ Taken from [Hilton Lipschitz](http://hiltmon.com/blog/2013/07/03/a-simple-c-plus
 
 Cassandra + Laocoon. Inspired from [here](http://ancienthistory.about.com/od/aeneadcharacters/ss/062309AeneidCharcters.htm). He's said to have been the only one to believe Cassandra, which didn't quite turn out too well for him nonetheless. But that's another matter.
 
-## License
+# License
 Copyright (c) 2014 Basebone
 
 Licensed under the Apache License, Version 2.0 (the "License");
