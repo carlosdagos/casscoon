@@ -25,6 +25,7 @@ PERTINENT TESTS
 	- Connection pooling
 	- Basic connections
 	- Connections with credentials
+	- Connection policies
 - Queries
 	- With scalar types
 	- With complex types
