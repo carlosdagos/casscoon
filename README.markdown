@@ -35,11 +35,15 @@ Lastly, you must have [Monolog](https://github.com/Seldaek/monolog) *somewhere* 
 
 + Check out the project
 
-    git clone https://github.com/charlydagos/casscoon
+	```
+	git clone https://github.com/charlydagos/casscoon
+	```
 
 + Check out the submodules
 
-    git submodule update
+	```
+	git submodule update
+	```
 
 + First install `include/cpp-driver` (read more [here](https://github.com/datastax/cpp-driver#building))
 
