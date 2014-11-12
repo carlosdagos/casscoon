@@ -200,6 +200,7 @@ Lastly, you must have [Monolog](https://github.com/Seldaek/monolog) *somewhere* 
 ### Installation
 
 + Check out the project
++ Check out the submodules
 + First install `include/cpp-driver` (read more [here](https://github.com/datastax/cpp-driver#building))
 
 	```
