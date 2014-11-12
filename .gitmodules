@@ -1,0 +1,6 @@
+[submodule "includes/cpp-driver"]
+	path = includes/cpp-driver
+	url = https://github.com/datastax/cpp-driver.git
+[submodule "includes/php-cpp"]
+	path = includes/php-cpp
+	url = https://github.com/CopernicaMarketingSoftware/PHP-CPP
