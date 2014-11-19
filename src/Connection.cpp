@@ -75,6 +75,15 @@ bool Connection::open()
 	cass_cluster_set_protocol_version(cluster, 2);
 	cass_cluster_set_contact_points(cluster, _host_string);
 	cass_cluster_set_port(cluster, _port);
+	// cass_cluster_set_num_threads_io // D: 2
+	// cass_cluster_set_queue_size_io // D: 4096
+	// cass_cluster_set_core_connections_per_host // D: 2
+	// cass_cluster_set_max_connections_per_host // D: 4
+	// cass_cluster_set_max_simultaneous_creation // D: 1
+	// cass_cluster_set_max_pending_requests // D: 128 * max_connections_per_host
+	// cass_cluster_set_max_simultaneous_requests_threshold // D: 100
+	// cass_cluster_set_connect_timeout // 5000 milliseconds
+	// cass_cluster_set_request_timeout // 12000 milliseconds
 
 	CassFuture* future = cass_cluster_connect(cluster);
 

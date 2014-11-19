@@ -19,6 +19,8 @@
 #define BB_CONNECTION_H
 
 #define CASSANDRA_DEFAULT_PORT 9042
+#define CASSANDRA_DEFAULT_PROTOCOL 2
+
 
 #include <cassandra.h>
 #include <phpcpp.h>
@@ -32,6 +34,7 @@ private:
 	const char* _host_string = nullptr;
 	int64_t _port = CASSANDRA_DEFAULT_PORT;
 	bool _is_open = false;
+	int _protocol = CASSANDRA_DEFAULT_PROTOCOL;
 
 public:
 	/**

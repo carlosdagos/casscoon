@@ -266,8 +266,21 @@ Php::Value Query::prepare(Php::Parameters &params)
 
 	for (unsigned int i = 0; i < this->_param_amount; i++) {
 		Php::Value prepare_value = prepare_values[i];
-		Data data = Data(prepare_value.get("type").numericValue(), prepare_value.get("value"));
-		data.bind(this->_statement, i);
+		if (!prepare_value.contains("type") || !prepare_value.contains("value")) {
+			throw Php::Exception("Invalid data format supplied to prepare");
+		}
+
+		if (!prepare_value.get("type").isNumeric()) {
+			throw Php::Exception("Invalid type supplied for data to prepare");
+		}
+
+		int type = prepare_value.get("type").numericValue();
+		if (DATA_TYPE_IS_VALID(type)) {
+			Data data = Data(prepare_value.get("type").numericValue(), prepare_value.get("value"));
+			data.bind(this->_statement, i);
+		} else {
+			throw Php::Exception("Invalid data type supplied, out of data type range");
+		}
 	}
 
 	return true;
@@ -275,10 +288,23 @@ Php::Value Query::prepare(Php::Parameters &params)
 
 Php::Value Query::exec()
 {
+	// Free the previous results in case there's multiple execs for the same object
+	if (this->_result != nullptr) {
+		cass_result_free(this->_result);
+		this->_rows = 0;
+		this->_column_count = 0;
+
+		if (this->_iterator != nullptr) {
+			cass_iterator_free(this->_iterator);
+		}
+	}
+
+	// Go and fetch the results
 	this->_result = this->_connection->execute(this->_statement);
 	this->_rows = cass_result_row_count(this->_result);
 	this->_column_count = cass_result_column_count(this->_result);
 
+	// Only get the iterator if there's rows
 	if (_rows > 0) {
 		this->_iterator = cass_iterator_from_result(this->_result);
 	}

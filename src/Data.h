@@ -64,6 +64,7 @@ varint    integers    Arbitrary-precision integer
 #define DATA_TYPE_TIMEUUID  17
 #define DATA_TYPE_VARCHAR   18
 #define DATA_TYPE_VARINT    19
+#define DATA_TYPE_IS_VALID(type) (1 <= type && type <= 19)
 
 class Data : public Php::Base
 {
