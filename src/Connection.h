@@ -27,7 +27,7 @@ class Connection : public Php::Base
 {
 private:
 	Php::Value _options;
-	Php::Value _logger = null;
+	Php::Value _logger = nullptr;
 	CassSession* _session = nullptr;
 	const char* _host_string = nullptr;
 	int64_t _port = CASSANDRA_DEFAULT_PORT;
