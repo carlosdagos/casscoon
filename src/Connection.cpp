@@ -45,7 +45,6 @@ void Connection::__construct(Php::Parameters &params)
 	}
 
 	if (this->_options.contains("logger")) {
-		std::cout << "contains logger wtf" << std::endl;
 		this->_logger = this->_options.get("logger");
 	}
 
