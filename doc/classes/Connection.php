@@ -27,7 +27,7 @@ class Connection
 	/**
 	 * @param $options['hosts'] (Required) Hosts string separated by commas
 	 *        $options['port']             Port integer, by default set to default native port 
-	 *        $options['logger']           PSR4 Logger to log info by the connection
+	 *        $options['logger']           PSR3 Logger to log info by the connection
 	 */
 	public function __construct(array $options) {}
 	/**
