@@ -154,7 +154,7 @@ const CassResult* Connection::execute(CassStatement* statement)
 
 void Connection::log(std::string level, std::string message)
 {
-	if (this->_logger != nullptr) {
+	if (this->_logger.size() > 0) {
 		this->_logger.call(level.c_str(), message);
 	}
 }
