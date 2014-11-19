@@ -69,8 +69,7 @@ bool Connection::open()
 	}
 
 	CassCluster* cluster = cass_cluster_new();
-
-	cass_cluster_set_log_level(cluster, CASS_LOG_DEBUG);
+	
 	cass_cluster_set_protocol_version(cluster, 2);
 	cass_cluster_set_contact_points(cluster, _host_string);
 	cass_cluster_set_port(cluster, _port);
