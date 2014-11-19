@@ -30,7 +30,7 @@ true && set_exception_handler(function(Exception $e) use ($logger) {
 
 $db = new Connection(array(
 	'hosts'  => '127.0.0.1',
-	'logger' => $logger,
+//	'logger' => $logger,
 ));
 
 $db->query('DROP KEYSPACE IF EXISTS examples')->exec();

@@ -45,6 +45,7 @@ void Connection::__construct(Php::Parameters &params)
 	}
 
 	if (this->_options.contains("logger")) {
+		std::cout << "contains logger wtf" << std::endl;
 		this->_logger = this->_options.get("logger");
 	}
 
@@ -69,7 +70,7 @@ bool Connection::open()
 	}
 
 	CassCluster* cluster = cass_cluster_new();
-	
+
 	cass_cluster_set_protocol_version(cluster, 2);
 	cass_cluster_set_contact_points(cluster, _host_string);
 	cass_cluster_set_port(cluster, _port);
@@ -87,7 +88,7 @@ bool Connection::open()
 
 void Connection::close()
 {
-	this->_logger.call("debug", "Connection::closing");
+	this->log("debug", "Connection::closing");
 
 	if (_is_open) {
 		CassFuture* future = cass_session_close(this->_session);
@@ -100,7 +101,7 @@ void Connection::close()
 		throw Php::Exception("Can't close unopened connection");
 	}
 
-	this->_logger.call("debug", "Connection::closed");
+	this->log("debug", "Connection::closed");
 }
 
 Php::Value Connection::query(Php::Parameters &params)
@@ -153,7 +154,7 @@ const CassResult* Connection::execute(CassStatement* statement)
 
 void Connection::log(std::string level, std::string message)
 {
-	if (this->_logger.size() > 0) {
+	try {
 		this->_logger.call(level.c_str(), message);
-	}
+	} catch (Php::Exception e) {}
 }
