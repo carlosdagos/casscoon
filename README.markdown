@@ -19,6 +19,8 @@ This is because your LD_LIBRARY_PATH is empty, and the driver needs that library
 
 	export LD_LIBRARY_PATH=/usr/local/lib/
 
+You could always include that into `/etc/bash.bashrc` and use `ldconfig` to reload your system library cache. You can check that the libraries exist in the path with `ldconfig -p`.
+
 If that still doesn't work, please let me know.
 
 Lastly, you must have [Monolog](https://github.com/Seldaek/monolog) *somewhere* in your include path. This dependency will be removed in the near future.
@@ -35,19 +37,19 @@ Lastly, you must have [Monolog](https://github.com/Seldaek/monolog) *somewhere* 
 
 + Check out the project
 + Check out the submodules
-+ First install `includes/cpp-driver` (read more [here](https://github.com/datastax/cpp-driver#building))
++ First install `include/cpp-driver` (read more [here](https://github.com/datastax/cpp-driver#building))
 
 	```
-	pushd includes/cpp-driver
+	pushd include/cpp-driver
 	cmake .
 	make 
 	make install
 	popd
 	```
-+ Secondly, install `includes/php-cpp` (read more [here](http://www.php-cpp.com/documentation/install))
++ Secondly, install `include/php-cpp` (read more [here](http://www.php-cpp.com/documentation/install))
 
 	```
-	pushd includes/php-cpp
+	pushd include/php-cpp
 	make
 	make install
 	popd
@@ -61,7 +63,7 @@ Lastly, you must have [Monolog](https://github.com/Seldaek/monolog) *somewhere* 
 
 ### To compile on OS X 
 
-And to keep compatibility across my Ubuntu VMs, replace the LINKER_FLAG line in `includes/php-cpp/Makefile`
+And to keep compatibility across my Ubuntu VMs, replace the LINKER_FLAG line in `include/php-cpp/Makefile`
 
 	ifeq ($(shell uname), Darwin)
 	LINKER_FLAGS        =   -shared -undefined dynamic_lookup
@@ -85,7 +87,7 @@ Taken from [Hilton Lipschitz](http://hiltmon.com/blog/2013/07/03/a-simple-c-plus
 + **bin**: The output executables go here, both for the app and for any tests and spikes.
 + **build**: This folder contains all object files, and is removed on a clean.
 + **doc**: Any notes, like my assembly notes and configuration files, are here. I decided to create the development and production config files in here instead of in a separate config folder as they “document” the configuration.
-+ **includes**: All project header files. All necessary third-party header files that do not exist under /usr/local/include are also placed here.
++ **include**: All project header files. All necessary third-party header files that do not exist under /usr/local/include are also placed here.
 + **lib**: Any libs that get compiled by the project, third party or any needed in development. Prior to deployment, third party libraries get moved to /usr/local/lib where they belong, leaving the project clean enough to compile on our Linux deployment servers. I really use this to test different library versions than the standard.
 + **spike**: I often write smaller classes or files to test technologies or ideas, and keep them around for future reference. They go here, where they do not dilute the real application’s files, but can still be found later.
 + **src**: The application and only the application’s source files.
