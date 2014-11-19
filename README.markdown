@@ -19,6 +19,8 @@ This is because your LD_LIBRARY_PATH is empty, and the driver needs that library
 
 	export LD_LIBRARY_PATH=/usr/local/lib/
 
+You could always include that into `/etc/bash.bashrc` and use `ldconfig` to reload your system library cache. You can check that the libraries exist in the path with `ldconfig -p`.
+
 If that still doesn't work, please let me know.
 
 Lastly, you must have [Monolog](https://github.com/Seldaek/monolog) *somewhere* in your include path. This dependency will be removed in the near future.
