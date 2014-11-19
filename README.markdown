@@ -23,8 +23,6 @@ You could always include that into `/etc/bash.bashrc` and use `ldconfig` to relo
 
 If that still doesn't work, please let me know.
 
-Lastly, you must have [Monolog](https://github.com/Seldaek/monolog) *somewhere* in your include path. This dependency will be removed in the near future.
-
 ## Example
 
 - A simple Example can be
