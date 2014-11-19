@@ -2,7 +2,7 @@
 	if (file_exists('vendor/autoload.php')) {
 		require 'vendor/autoload.php';
 	} else {
-		die('Cannot continue without dependencies, have you run "composer install"?');
+		die("Cannot continue without dependencies, have you run 'composer install' in the tests directory? \n");
 	}
 
 	require 'TestException.php';
