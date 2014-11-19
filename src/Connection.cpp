@@ -44,7 +44,6 @@ void Connection::__construct(Php::Parameters &params)
 		throw Php::Exception("Port is not a number");
 	}
 
-	this->_logger = Php::Object("Monolog\\Logger", "default_connection_logger");
 	if (this->_options.contains("logger")) {
 		this->_logger = this->_options.get("logger");
 	}
@@ -155,5 +154,7 @@ const CassResult* Connection::execute(CassStatement* statement)
 
 void Connection::log(std::string level, std::string message)
 {
-	this->_logger.call(level.c_str(), message);
+	if (this->_logger != nullptr) {
+		this->_logger.call(level.c_str(), message);
+	}
 }
