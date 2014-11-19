@@ -1,5 +1,10 @@
 <?php
-	require 'vendor/autoload.php';
+	if (file_exists('vendor/autoload.php')) {
+		require 'vendor/autoload.php';
+	} else {
+		die('Cannot continue without dependencies, have you run "composer install"?');
+	}
+
 	require 'TestException.php';
 
 	use Casscoon\Tests\TestException;
