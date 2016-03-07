@@ -1,3 +1,12 @@
+Discontinued :)
+===============
+
+Please see
+
+[https://github.com/datastax/php-driver](https://github.com/datastax/php-driver)
+
+Thanks! 
+
 Casscoon: PHP Extension for Cassandra [[alpha]]
 ===============================================
 
